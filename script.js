@@ -32,15 +32,15 @@ function revealSections() {
 function setupOpenInvitation() {
     const openBtn = document.getElementById('openInvitationBtn');
 openBtn.addEventListener('click', () => {
-    // Select all sections except the first one
     const sections = document.querySelectorAll('.section');
     sections.forEach((section, index) => {
-        if(index > 0) { // skip Section 1
-            section.classList.add('visible');
+        if(index > 0){ 
+            section.classList.remove('hidden'); // remove hidden
+            section.classList.add('visible');   // add visible animation
         }
     });
-    // Scroll smoothly to the first revealed section
     sections[1].scrollIntoView({ behavior: 'smooth' });
+    openBtn.style.display = 'none'; // hide button
 });
     }
 }
