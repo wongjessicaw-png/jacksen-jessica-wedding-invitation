@@ -1,1 +1,141 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Jessica and Jack Wedding Invitation</title>\n    <style>\n        body { font-family: Arial, sans-serif; line-height: 1.6; }\n        h1, h2, h3 { color: #6B5B95; }\n        .container { width: 80%; margin: auto; overflow: hidden; }\n        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }\n    </style>\n</head>\n<body>\n    <div class="container">\n        <div class="section">\n            <h1>Welcome to Our Wedding!</h1>\n            <p>We are excited to celebrate our love and commitment to each other with all of you.</p>\n        </div>\n        <div class="section">\n            <h2>Main Characters</h2>\n            <p>Meet the amazing couple: <strong>Jessica Wong</strong> and <strong>Jack Sen</strong>.</p>\n        </div>\n        <div class="section">\n            <h2>Our Love Story</h2>\n            <h3>Timeline</h3>\n            <p>\n                - 2018: We met at a mutual friend's party.\n                <br> - 2020: Our first vacation together to the beach.\n                <br> - 2022: We got engaged!\n            </p>\n        </div>\n        <div class="section">\n            <h2>Venue</h2>\n            <p>The wedding will be held at the beautiful <strong>Sunset Gardens</strong>, on March 15, 2026.</p>\n            <p><em>Address:</em> 123 Wedding Rd, Love City, State, 12345</p>\n        </div>\n        <div class="section">\n            <h2>Blessings</h2>\n            <p>We kindly request your blessings and support as we embark on this new journey together.</p>\n        </div>\n        <div class="section">\n            <h2>RSVP</h2>\n            <p>Please let us know if you can join us by responding to this invitation.</p>\n        </div>\n        <div class="section">\n            <h2>Closing Remarks</h2>\n            <p>We cannot wait to celebrate this special day with each and every one of you!</p>\n        </div>\n    </div>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacksen & Jessica Wedding Invitation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin:0; padding:0; }
+        h1,h2,h3 { color: #6B5B95; }
+        .container { width: 90%; max-width: 900px; margin: auto; overflow: hidden; padding:20px;}
+        .section { margin: 40px 0; padding: 20px; border-radius: 8px; }
+        .hidden { display: none; }
+        button { padding: 10px 20px; background: #6B5B95; color: white; border: none; border-radius: 5px; cursor: pointer;}
+        .timeline { border-left: 2px solid #6B5B95; margin-left: 20px; padding-left: 20px; }
+        .timeline div { margin-bottom: 15px; }
+        .characters { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        .characters div { text-align: center; margin: 10px; }
+        .characters img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+        .venue img { width:100%; max-width:400px; border-radius: 8px; margin-top:10px; }
+        footer { text-align: center; padding: 20px; border-top:1px solid #ddd; }
+        footer img { width: 32px; height: 32px; margin: 0 5px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Section 1: Greetings -->
+    <div class="section" id="section1">
+        <h1 id="guestGreeting">Welcome!</h1>
+        <h2>JACKSEN & JESSICA WEDDING INVITATION</h2>
+        <p>30 JANUARY 2027. It's finally happening.</p>
+        <button id="openInvitationBtn">Open Invitation</button>
+    </div>
+
+    <!-- Section 2: Main Characters -->
+    <div class="section hidden" id="section2">
+        <h2>The Main Characters</h2>
+        <div class="characters">
+            <div>
+                <img src="assets/bride.jpg" alt="Jessica Wong">
+                <h3>Jessica Wong</h3>
+                <p>The beautiful bride who lights up every room.</p>
+            </div>
+            <div>
+                <img src="assets/groom.jpg" alt="Jacksen">
+                <h3>Jacksen</h3>
+                <p>The charming groom who stole Jessica's heart.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: The Crossroad / Timeline -->
+    <div class="section hidden" id="section3">
+        <h2>The Crossroad</h2>
+        <div class="timeline">
+            <div><strong>2018:</strong> We met at a mutual friend's party.</div>
+            <div><strong>2020:</strong> Our first vacation together to the beach.</div>
+            <div><strong>2022:</strong> We got engaged!</div>
+        </div>
+    </div>
+
+    <!-- Section 4: Venue -->
+    <div class="section hidden" id="section4">
+        <h2>Venue</h2>
+        <p><strong>Wedding Ceremony:</strong> GBI Mangga Dua WTC, 10:00 AM</p>
+        <p><strong>Wedding Reception:</strong> Orchardz Hotel Pangeran Jayakarta, 18:00 PM</p>
+        <a href="#" target="_blank">View on Google Maps</a>
+        <div class="venue">
+            <img src="assets/maps_placeholder.jpg" alt="Google Maps Location">
+        </div>
+    </div>
+
+    <!-- Section 5: Wedding Blessings -->
+    <div class="section hidden" id="section5">
+        <h2>Wedding Blessings</h2>
+        <p>If you wish to give blessings, you may send a gift via bank transfer or mail:</p>
+        <ul>
+            <li>BCA 4870570979 a/n Jessica Wong</li>
+            <li>MANDIRI 1150010191874 a/n Jacksen</li>
+        </ul>
+        <p>Or send your gift to our address (to be provided later).</p>
+    </div>
+
+    <!-- Section 6: RSVP -->
+    <div class="section hidden" id="section6">
+        <h2>RSVP</h2>
+        <p>Please let us know if you can join us.</p>
+        <form id="rsvpForm">
+            <input type="text" placeholder="Your Name" required><br><br>
+            <input type="number" placeholder="Number of Guests" required><br><br>
+            <select required>
+                <option value="">Select Attendance</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select><br><br>
+            <button type="submit">Submit RSVP</button>
+        </form>
+        <div id="rsvpMessage"></div>
+    </div>
+
+    <!-- Section 7: Closing -->
+    <div class="section hidden" id="section7">
+        <h2>Closing</h2>
+        <p>We cannot wait to celebrate this special day with you!</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>Connect with us:</p>
+    <a href="#"><img src="assets/whatsapp_icon.png" alt="WhatsApp"></a>
+    <a href="#"><img src="assets/instagram_icon.png" alt="Instagram"></a>
+</footer>
+
+<script>
+    // Get guest name from URL parameter ?guest=
+    const params = new URLSearchParams(window.location.search);
+    const guestName = params.get('guest');
+    if(guestName) {
+        document.getElementById('guestGreeting').innerText = `Welcome, ${guestName}!`;
+    }
+
+    // Scroll to next section on button click
+    const openBtn = document.getElementById('openInvitationBtn');
+    openBtn.addEventListener('click', () => {
+        document.getElementById('section2').classList.remove('hidden');
+        document.getElementById('section2').scrollIntoView({behavior: 'smooth'});
+    });
+
+    // RSVP form placeholder functionality
+    const rsvpForm = document.getElementById('rsvpForm');
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('rsvpMessage').innerText = "Thank you for your RSVP! Firebase integration will be added later.";
+        rsvpForm.reset();
+    });
+</script>
+
+</body>
+</html>
