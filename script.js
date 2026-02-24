@@ -1,16 +1,50 @@
 // script.js
 
-// Functionality to greet guests based on URL parameters
+// ==========================
+// Guest greeting from URL ?guest=
+// ==========================
 function greetGuest() {
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('guest');
-    if (guestName) {
-        const greeting = `Welcome to the wedding, ${guestName}!`;
-        document.getElementById('greeting').innerText = greeting;
+    const greetingEl = document.getElementById('guestGreeting');
+    if (guestName && greetingEl) {
+        greetingEl.innerText = `Welcome, ${guestName}!`;
     }
 }
 
+// ==========================
+// Section reveal animation on scroll
+// ==========================
+function revealSections() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+        if(sectionTop < triggerPoint) {
+            section.classList.add('visible');
+        }
+    });
+}
+
+// ==========================
+// Smooth scroll for Open Invitation button
+// ==========================
+function setupOpenInvitation() {
+    const openBtn = document.getElementById('openInvitationBtn');
+    if(openBtn) {
+        openBtn.addEventListener('click', () => {
+            const nextSection = document.getElementById('section2');
+            if(nextSection) {
+                nextSection.classList.add('visible'); // reveal section
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+}
+
+// ==========================
 // RSVP form handling
+// ==========================
 function handleRsvp(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -18,24 +52,38 @@ function handleRsvp(event) {
     formData.forEach((value, key) => {
         rsvpDetails[key] = value;
     });
+
     console.log('RSVP Details:', rsvpDetails);
-    // Here you can implement further handling, like sending data to a server.
+
+    // Display temporary message
+    const rsvpMessage = document.getElementById('rsvpMessage');
+    if(rsvpMessage) {
+        rsvpMessage.innerText = "Thank you for your RSVP! Firebase integration will be added later.";
+    }
+
+    event.target.reset();
 }
 
-// Message board functionality
+// ==========================
+// Message board handling (placeholder)
+// ==========================
 function submitMessage(event) {
     event.preventDefault();
-    const message = document.getElementById('messageInput').value;
+    const messageInput = document.getElementById('messageInput');
     const messageBoard = document.getElementById('messageBoard');
-    const newMessage = document.createElement('div');
-    newMessage.innerText = message;
-    messageBoard.appendChild(newMessage);
-    document.getElementById('messageInput').value = '';
+    if(messageInput && messageBoard && messageInput.value.trim() !== '') {
+        const newMessage = document.createElement('div');
+        newMessage.innerText = messageInput.value.trim();
+        messageBoard.appendChild(newMessage);
+        messageInput.value = '';
+    }
 }
 
-// Firebase placeholder setup (assuming Firebase has been initialized)
+// ==========================
+// Firebase placeholder setup
+// ==========================
 function setupFirebase() {
-    // Placeholder for Firebase configuration and initialization
+    // Firebase config will be added after deployment
     const firebaseConfig = {
         apiKey: 'YOUR_API_KEY',
         authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
@@ -45,15 +93,27 @@ function setupFirebase() {
         messagingSenderId: 'YOUR_SENDER_ID',
         appId: 'YOUR_APP_ID'
     };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    // You can implement further database interactions here.
+    if(typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+    }
+    // Later: add database push for RSVP and messages
 }
 
-// Event Listeners
-window.onload = function() {
+// ==========================
+// Event listeners on page load
+// ==========================
+window.addEventListener('DOMContentLoaded', () => {
     greetGuest();
-    document.getElementById('rsvpForm').addEventListener('submit', handleRsvp);
-    document.getElementById('messageForm').addEventListener('submit', submitMessage);
+    setupOpenInvitation();
     setupFirebase();
-};
+
+    const rsvpForm = document.getElementById('rsvpForm');
+    if(rsvpForm) rsvpForm.addEventListener('submit', handleRsvp);
+
+    const messageForm = document.getElementById('messageForm');
+    if(messageForm) messageForm.addEventListener('submit', submitMessage);
+
+    // Reveal sections on scroll
+    revealSections();
+    window.addEventListener('scroll', revealSections);
+});
