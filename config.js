@@ -1,4 +1,9 @@
-// Firebase configuration
+// config.js
+
+// ==========================
+// Firebase configuration placeholder
+// Replace with your real credentials after deploying
+// ==========================
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -9,11 +14,16 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// Guest data
+// ==========================
+// Sample guest list for testing
+// Used for demo purposes to verify URL parameter personalization
+// ==========================
 const guests = [
   { name: 'John Doe', rsvp: true },
   { name: 'Jane Smith', rsvp: false },
   { name: 'Alice Johnson', rsvp: true }
 ];
 
-export { firebaseConfig, guests };
+// Expose to global scope for use in scripts without ES module
+window.firebaseConfig = firebaseConfig;
+window.guests = guests;
