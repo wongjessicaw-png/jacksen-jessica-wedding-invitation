@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacksen & Jessica Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase JS -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-    <!-- Config and main script -->
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+
+    <!-- Firebase JS via module CDN -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
+            authDomain: "wedding-database-e128c.firebaseapp.com",
+            databaseURL: "https://wedding-database-e128c-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wedding-database-e128c",
+            storageBucket: "wedding-database-e128c.appspot.com",
+            messagingSenderId: "144261977665",
+            appId: "1:144261977665:web:508c89eff1e4d7ab7b18c0",
+            measurementId: "G-JNR07XFJTC"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Expose database to window so script.js can use it
+        window.firebaseDatabase = database;
+    </script>
+
+    <!-- Your main script -->
+    <script src="script.js" defer></script>
 </head>
 <body>
 
