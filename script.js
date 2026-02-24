@@ -1,101 +1,111 @@
-// ==========================
 // script.js
-// ==========================
 
-// 1. Guest greeting from URL ?guest=
+// ----------------------
+// 1. Guest greeting
+// ----------------------
 function greetGuest() {
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('guest');
     const greetingEl = document.getElementById('guestGreeting');
+
     if (guestName && greetingEl) {
-        greetingEl.innerText = `Welcome, ${guestName}!`;
+        greetingEl.innerText = `Welcome to the wedding, ${guestName}!`;
     }
 }
 
-// 2. Reveal all sections after Open Invitation button click
+// ----------------------
+// 2. Open Invitation button
+// ----------------------
 function setupOpenInvitation() {
-    const openBtn = document.getElementById('openInvitationBtn');
-    if (!openBtn) return;
+    const btn = document.getElementById('openInvitationBtn');
+    if (!btn) return;
 
-    openBtn.addEventListener('click', () => {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach((section, index) => {
-            if (index > 0) { // Skip Section 1
-                section.classList.remove('hidden');
-                section.classList.add('visible');
-            }
-        });
-        const firstReveal = sections[1];
-        if (firstReveal) firstReveal.scrollIntoView({ behavior: 'smooth' });
-        openBtn.style.display = 'none';
-    });
-}
-
-// 3. RSVP form handling (placeholder)
-function handleRsvp(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const rsvpDetails = {};
-    formData.forEach((value, key) => {
-        rsvpDetails[key] = value;
-    });
-    console.log('RSVP Details:', rsvpDetails);
-
-    const rsvpMessage = document.getElementById('rsvpMessage');
-    if (rsvpMessage) {
-        rsvpMessage.innerText = "Thank you for your RSVP! Firebase integration will be added later.";
-    }
-
-    event.target.reset();
-}
-
-// 4. Message board handling (placeholder)
-function submitMessage(event) {
-    event.preventDefault();
-    const messageInput = document.getElementById('messageInput');
-    const messageBoard = document.getElementById('messageBoard');
-    if (messageInput && messageBoard && messageInput.value.trim() !== '') {
-        const newMessage = document.createElement('div');
-        newMessage.innerText = messageInput.value.trim();
-        messageBoard.appendChild(newMessage);
-        messageInput.value = '';
-    }
-}
-
-// 5. Firebase placeholder setup
-function setupFirebase() {
-    if (typeof firebase !== 'undefined' && window.firebaseConfig) {
-        firebase.initializeApp(window.firebaseConfig);
-        // TODO: Add database push for RSVP and messages
-    }
-}
-
-// 6. Optional: reveal sections on scroll
-function revealSectionsOnScroll() {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const triggerPoint = window.innerHeight - 100;
-        if (sectionTop < triggerPoint) {
+    btn.addEventListener('click', () => {
+        const hiddenSections = document.querySelectorAll('.section.hidden');
+        hiddenSections.forEach(section => {
+            section.classList.remove('hidden');
             section.classList.add('visible');
-        }
+        });
+        // Optionally scroll to the first revealed section
+        const firstSection = document.getElementById('section2');
+        if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth' });
     });
 }
 
-// ==========================
-// Event listeners on page load
-// ==========================
+// ----------------------
+// 3. RSVP Form submission
+// ----------------------
+function setupRsvpForm() {
+    const form = document.getElementById('rsvpForm');
+    const rsvpMessage = document.getElementById('rsvpMessage');
+    if (!form || !window.firebaseDatabase) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {
+            nama: formData.get('nama'),
+            jumlah_tamu: Number(formData.get('jumlah_tamu')),
+            kehadiran: formData.get('kehadiran'),
+            timestamp: Date.now()
+        };
+
+        // Push data to Firebase
+        const rsvpRef = firebaseDatabase.ref('rsvps');
+        rsvpRef.push(data)
+            .then(() => {
+                rsvpMessage.innerText = 'RSVP submitted successfully! Thank you.';
+                form.reset();
+            })
+            .catch((error) => {
+                rsvpMessage.innerText = 'Error submitting RSVP: ' + error.message;
+            });
+    });
+}
+
+// ----------------------
+// 4. Message Board
+// ----------------------
+function setupMessageBoard() {
+    const form = document.getElementById('messageForm');
+    const input = document.getElementById('messageInput');
+    const board = document.getElementById('messageBoard');
+    if (!form || !input || !board || !window.firebaseDatabase) return;
+
+    // Submit new message
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const msg = input.value.trim();
+        if (!msg) return;
+
+        const messagesRef = firebaseDatabase.ref('messages');
+        messagesRef.push({
+            message: msg,
+            timestamp: Date.now()
+        });
+
+        input.value = '';
+    });
+
+    // Listen for new messages in real-time
+    const messagesRef = firebaseDatabase.ref('messages');
+    messagesRef.on('child_added', (snapshot) => {
+        const msgData = snapshot.val();
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.innerText = msgData.message;
+        board.appendChild(div);
+        board.scrollTop = board.scrollHeight;
+    });
+}
+
+// ----------------------
+// 5. Initialize all
+// ----------------------
 window.addEventListener('DOMContentLoaded', () => {
     greetGuest();
     setupOpenInvitation();
-    setupFirebase();
-
-    const rsvpForm = document.getElementById('rsvpForm');
-    if (rsvpForm) rsvpForm.addEventListener('submit', handleRsvp);
-
-    const messageForm = document.getElementById('messageForm');
-    if (messageForm) messageForm.addEventListener('submit', submitMessage);
-
-    revealSectionsOnScroll();
-    window.addEventListener('scroll', revealSectionsOnScroll);
+    setupRsvpForm();
+    setupMessageBoard();
 });
