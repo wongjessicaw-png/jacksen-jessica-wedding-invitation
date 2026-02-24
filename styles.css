@@ -1,0 +1,31 @@
+.invitation {
+  font-family: 'Garamond', serif;
+  background-color: #f2f2f2;
+  border: 2px solid #4a4a4a;
+  padding: 20px;
+  text-align: center;
+}
+
+.invitation h1 {
+  color: #333;
+  font-size: 32px;
+}
+
+.invitation p {
+  color: #666;
+  font-size: 18px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #4a4a4a;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #333;
+}
