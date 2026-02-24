@@ -21,16 +21,12 @@ function setupOpenInvitation() {
         const sections = document.querySelectorAll('.section');
         sections.forEach((section, index) => {
             if (index > 0) { // Skip Section 1
-                section.classList.remove('hidden'); // remove hidden class
-                section.classList.add('visible');   // trigger fade/slide animation
+                section.classList.remove('hidden');
+                section.classList.add('visible');
             }
         });
-        // Scroll to the first revealed section
         const firstReveal = sections[1];
-        if (firstReveal) {
-            firstReveal.scrollIntoView({ behavior: 'smooth' });
-        }
-        // Hide the Open Invitation button
+        if (firstReveal) firstReveal.scrollIntoView({ behavior: 'smooth' });
         openBtn.style.display = 'none';
     });
 }
@@ -49,6 +45,7 @@ function handleRsvp(event) {
     if (rsvpMessage) {
         rsvpMessage.innerText = "Thank you for your RSVP! Firebase integration will be added later.";
     }
+
     event.target.reset();
 }
 
@@ -69,17 +66,17 @@ function submitMessage(event) {
 function setupFirebase() {
     if (typeof firebase !== 'undefined' && window.firebaseConfig) {
         firebase.initializeApp(window.firebaseConfig);
-        // Later: implement database push for RSVP and messages
+        // TODO: Add database push for RSVP and messages
     }
 }
 
-// 6. Optional: reveal sections on scroll (fade-in)
+// 6. Optional: reveal sections on scroll
 function revealSectionsOnScroll() {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
         const triggerPoint = window.innerHeight - 100;
-        if(sectionTop < triggerPoint) {
+        if (sectionTop < triggerPoint) {
             section.classList.add('visible');
         }
     });
@@ -99,7 +96,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const messageForm = document.getElementById('messageForm');
     if (messageForm) messageForm.addEventListener('submit', submitMessage);
 
-    // Optional: reveal sections on scroll
     revealSectionsOnScroll();
     window.addEventListener('scroll', revealSectionsOnScroll);
 });
