@@ -1,4 +1,6 @@
-/* General body and container */
+/* =========================
+   General body and container
+========================= */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f7f7;
@@ -15,24 +17,36 @@ body {
     padding: 20px;
 }
 
-/* Sections */
+/* =========================
+   Section styling
+========================= */
 .section {
     margin: 40px 0;
     padding: 20px;
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    /* hidden by default - fade/slide */
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease-in-out;
 }
 
+/* Hidden / visible classes for script.js */
+.section.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
 .section.visible {
     opacity: 1;
     transform: translateY(0);
+    transition: all 0.6s ease-in-out;
 }
 
-/* Headers */
+/* =========================
+   Headers
+========================= */
 h1, h2, h3 {
     color: #8A0B3A;
     margin-bottom: 10px;
@@ -51,14 +65,18 @@ h3 {
     font-size: 1.8em;
 }
 
-/* Paragraphs */
+/* =========================
+   Paragraphs
+========================= */
 p {
     font-size: 1.1em;
     line-height: 1.6;
     text-align: center;
 }
 
-/* Buttons */
+/* =========================
+   Buttons
+========================= */
 button {
     padding: 10px 20px;
     background-color: #8A0B3A;
@@ -73,7 +91,9 @@ button:hover {
     background-color: #A82D5B;
 }
 
-/* Main Characters section */
+/* =========================
+   Main Characters (Bride/Groom) section
+========================= */
 .characters {
     display: flex;
     justify-content: space-around;
@@ -94,7 +114,9 @@ button:hover {
     border: 3px solid #8A0B3A;
 }
 
-/* Timeline */
+/* =========================
+   Timeline
+========================= */
 .timeline {
     border-left: 3px solid #8A0B3A;
     margin-left: 20px;
@@ -117,7 +139,9 @@ button:hover {
     border-radius: 50%;
 }
 
-/* Venue images */
+/* =========================
+   Venue Images
+========================= */
 .venue img {
     width: 100%;
     max-width: 400px;
@@ -128,7 +152,9 @@ button:hover {
     margin-right: auto;
 }
 
-/* RSVP form */
+/* =========================
+   RSVP form
+========================= */
 #rsvpForm input, #rsvpForm select {
     width: 100%;
     padding: 10px;
@@ -143,7 +169,19 @@ button:hover {
     width: 100%;
 }
 
-/* Footer */
+/* =========================
+   Message board
+========================= */
+#messageBoard div {
+    background-color: #f0f0f0;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+/* =========================
+   Footer
+========================= */
 footer {
     text-align: center;
     padding: 20px;
@@ -157,7 +195,9 @@ footer img {
     vertical-align: middle;
 }
 
-/* Responsive design */
+/* =========================
+   Responsive design
+========================= */
 @media screen and (max-width: 600px) {
     .characters {
         flex-direction: column;
