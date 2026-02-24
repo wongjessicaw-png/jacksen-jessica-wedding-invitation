@@ -26,21 +26,39 @@ body {
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    opacity: 0;           /* hidden by default */
-    transform: translateY(30px);
+    opacity: 1;           /* visible by default for welcome */
+    transform: translateY(0);
     transition: all 0.6s ease-in-out;
 }
 
-/* Hidden / visible classes for JS */
+/* Hidden sections */
 .section.hidden {
+    display: none;        /* completely hidden for main content initially */
     opacity: 0;
     transform: translateY(30px);
 }
 
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.6s ease-in-out;
+/* Fade-out welcome animation */
+.section.fade-out {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 1s ease;
+}
+
+/* Fade-in main content animation */
+.section.fade-in {
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s forwards;
+}
+
+/* Keyframes for fade-in */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================
