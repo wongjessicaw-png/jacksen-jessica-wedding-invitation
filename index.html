@@ -6,13 +6,39 @@
     <title>Jacksen & Jessica Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /* Hide sections initially except welcome */
+        .hidden { display: none; }
+
+        /* Fade out animation for welcome section */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* Optional: Fade-in animation for main content */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Center welcome content */
+        #section1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+
     <!-- Firebase JS via module CDN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-        import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
 
-        // Firebase config
         const firebaseConfig = {
             apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
             authDomain: "wedding-database-e128c.firebaseapp.com",
@@ -24,17 +50,41 @@
             measurementId: "G-JNR07XFJTC"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
-
-        // Expose database to window so script.js can use it
         window.firebaseDatabase = database;
     </script>
 
-    <!-- Your main script -->
-    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const openBtn = document.getElementById('openInvitationBtn');
+            const welcomeSection = document.getElementById('section1');
+            const mainSections = document.querySelectorAll('#section2, #section3, #section4, #section5, #section6, #section7');
+
+            openBtn.addEventListener('click', () => {
+                // Fade out welcome section
+                welcomeSection.classList.add('fade-out');
+
+                // After fade-out, hide welcome and show main content
+                setTimeout(() => {
+                    welcomeSection.style.display = 'none';
+                    mainSections.forEach(sec => {
+                        sec.classList.remove('hidden');
+                        sec.classList.add('fade-in');
+                    });
+                }, 1000); // matches CSS transition duration
+            });
+
+            // Optional: personalize greeting based on URL query
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('guest');
+            if (guestName) {
+                document.getElementById('guestGreeting').textContent = `Welcome to Our Wedding, ${guestName}!`;
+            }
+        });
+    </script>
+
 </head>
 <body>
 
