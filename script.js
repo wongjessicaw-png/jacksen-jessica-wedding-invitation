@@ -31,14 +31,17 @@ function revealSections() {
 // ==========================
 function setupOpenInvitation() {
     const openBtn = document.getElementById('openInvitationBtn');
-    if(openBtn) {
-        openBtn.addEventListener('click', () => {
-            const nextSection = document.getElementById('section2');
-            if(nextSection) {
-                nextSection.classList.add('visible'); // reveal section
-                nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+openBtn.addEventListener('click', () => {
+    // Select all sections except the first one
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section, index) => {
+        if(index > 0) { // skip Section 1
+            section.classList.add('visible');
+        }
+    });
+    // Scroll smoothly to the first revealed section
+    sections[1].scrollIntoView({ behavior: 'smooth' });
+});
     }
 }
 
