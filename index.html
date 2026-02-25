@@ -103,8 +103,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('guest');
             if (guestName) {
-                document.getElementById('guestGreeting').textContent = `${guestName},
-                You are cordially invited to`;
+                document.getElementById('guestGreeting').textContent = guestName;
+                document.getElementById('guestInviteLine').textContent = 'We cordially invite you to';
             }
         });
     </script>
@@ -116,11 +116,12 @@
 
     <!-- Section 1: Greetings -->
     <div class="section" id="section1">
-        <h1 id="guestGreeting">Hi, </h1>
+        <h1 id="guestGreeting">Hi,</h1>
+        <p id="guestInviteLine">We cordially invite you to</p>
         <h2>JACKSEN & JESSICA</h2>
         <h2>WEDDING INVITATION</h2>
-        <p>30 JANUARY 2027.</p> 
-        </p>It's finally happening.</p>
+        <p>30 JANUARY 2027.</p>
+        <p>It's finally happening.</p>
         <button id="openInvitationBtn">Open Invitation</button>
     </div>
 
