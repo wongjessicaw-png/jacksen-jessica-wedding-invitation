@@ -12,7 +12,6 @@
 
     z-index: -1;
 
-    /* HARD LOCK GPU */
     transform: translateZ(0);
     will-change: transform;
     pointer-events: none;
@@ -29,7 +28,7 @@ body {
     padding: 0;
     line-height: 1.6;
 
-    overflow-x: hidden; /* prevent shift */
+    overflow-x: hidden;
 }
 
 
@@ -37,17 +36,19 @@ body {
    CONTAINER
 ========================= */
 .container {
-    width: 90%;
-    max-width: 900px;
+    width: 100%;              /* 🔥 FULL WIDTH */
+    max-width: 1000px;        /* 🔥 slightly wider */
     margin: auto;
     padding: 20px;
     position: relative;
     z-index: 1;
+
+    text-align: center;       /* 🔥 CENTER EVERYTHING */
 }
 
 
 /* =========================
-   FULLSCREEN WELCOME (OPTIMIZED)
+   FULLSCREEN WELCOME
 ========================= */
 #section1 {
     position: fixed;
@@ -60,12 +61,10 @@ body {
     align-items: center;
     flex-direction: column;
 
-    /* 🔥 FIX: remove heavy blur */
     background: rgba(255, 255, 255, 0.65);
 
     z-index: 999;
 
-    /* GPU acceleration */
     transform: translateZ(0);
     will-change: opacity, transform;
 }
@@ -75,11 +74,13 @@ body {
    SECTION BASE
 ========================= */
 .section {
-    margin: 40px 0;
+    margin: 40px auto;        /* 🔥 CENTER FIX */
     padding: 20px;
     border-radius: 12px;
 
-    /* 🔥 FIX: no backdrop-filter */
+    width: 100%;              /* 🔥 IMPORTANT */
+    max-width: 700px;         /* 🔥 PREVENT FULL WIDTH */
+
     background: rgba(255, 255, 255, 0.9);
 
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -175,7 +176,8 @@ button:hover {
 ========================= */
 .characters {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* 🔥 CENTER FIX */
+    gap: 40px;               /* 🔥 nicer spacing */
     flex-wrap: wrap;
     margin-top: 20px;
 }
@@ -199,8 +201,10 @@ button:hover {
 ========================= */
 .timeline {
     border-left: 3px solid #8A0B3A;
-    margin-left: 20px;
+    margin: 20px auto;       /* 🔥 CENTER BLOCK */
     padding-left: 20px;
+    max-width: 500px;        /* 🔥 keep it centered nicely */
+    text-align: left;        /* timeline reads better left */
 }
 
 .timeline div {
@@ -273,7 +277,7 @@ footer {
 footer img {
     width: 32px;
     height: 32px;
-    margin: 0 5px;
+    margin: 0 8px; /* 🔥 spacing */
 }
 
 
