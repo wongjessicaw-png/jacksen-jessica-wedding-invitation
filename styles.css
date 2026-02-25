@@ -3,12 +3,19 @@
 ========================= */
 body {
     font-family: 'Arial', sans-serif;
-    background: url('./assets/BG BOLD.jpeg') no-repeat center center/cover;
-    background-attachment: fixed;
     color: #333;
     margin: 0;
     padding: 0;
     line-height: 1.6;
+}
+
+/* FIXED background layer (prevents resizing/jumping) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url('./assets/BG BOLD.jpeg') no-repeat center center/cover;
+    z-index: -1;
 }
 
 .container {
