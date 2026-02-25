@@ -27,18 +27,19 @@ function setupOpenInvitation() {
         // Fade out welcome section
         welcomeSection.classList.add('fade-out');
 
-        // After fade-out, hide welcome and show main sections
+        // After fade-out, remove welcome and show main sections
         setTimeout(() => {
-            welcomeSection.style.display = 'none';
+            welcomeSection.remove(); // smoother than display:none
 
             mainSections.forEach((section, index) => {
                 section.classList.remove('hidden');
-                // Add fade-in with staggered delay
+
+                // Add staggered fade-in animation
                 section.style.animationDelay = `${index * 0.2}s`;
                 section.classList.add('fade-in');
             });
 
-            // Optionally scroll to first section
+            // Smooth scroll to first section
             if (mainSections[0]) {
                 mainSections[0].scrollIntoView({ behavior: 'smooth' });
             }
