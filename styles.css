@@ -3,7 +3,8 @@
 ========================= */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    background: url('./assets/BG BOLD.jpeg') no-repeat center center/cover;
+    background-attachment: fixed;
     color: #333;
     margin: 0;
     padding: 0;
@@ -15,6 +16,8 @@ body {
     max-width: 900px;
     margin: auto;
     padding: 20px;
+    position: relative;
+    z-index: 1; /* ensures content stays above background */
 }
 
 /* =========================
@@ -23,17 +26,22 @@ body {
 .section {
     margin: 40px 0;
     padding: 20px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    opacity: 1;           /* visible by default for welcome */
+    border-radius: 12px;
+
+    /* softer glass effect */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+    opacity: 1;
     transform: translateY(0);
     transition: all 0.6s ease-in-out;
 }
 
 /* Hidden sections */
 .section.hidden {
-    display: none;        /* completely hidden for main content initially */
+    display: none;
     opacity: 0;
     transform: translateY(30px);
 }
@@ -99,13 +107,15 @@ button {
     background-color: #8A0B3A;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 1em;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background-color: #A82D5B;
+    transform: translateY(-2px);
 }
 
 /* =========================
@@ -190,7 +200,7 @@ button:hover {
    Message board
 ========================= */
 #messageBoard div {
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.9);
     padding: 8px 10px;
     margin-bottom: 8px;
     border-radius: 5px;
@@ -202,7 +212,7 @@ button:hover {
 footer {
     text-align: center;
     padding: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 footer img {
