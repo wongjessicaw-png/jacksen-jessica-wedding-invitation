@@ -3,8 +3,7 @@
 ========================= */
 .bg-fixed {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
 
@@ -13,18 +12,24 @@
 
     z-index: -1;
 
-    /* 🔥 CRITICAL: lock rendering */
-    will-change: transform;
+    /* HARD LOCK GPU */
     transform: translateZ(0);
-    backface-visibility: hidden;
+    will-change: transform;
+    pointer-events: none;
 }
 
+
+/* =========================
+   BODY
+========================= */
 body {
     font-family: 'Arial', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
     line-height: 1.6;
+
+    overflow-x: hidden; /* prevent shift */
 }
 
 
@@ -42,12 +47,12 @@ body {
 
 
 /* =========================
-   🔥 FIX: FULLSCREEN WELCOME
+   FULLSCREEN WELCOME (OPTIMIZED)
 ========================= */
 #section1 {
-    position: fixed;   /* KEY FIX */
+    position: fixed;
     inset: 0;
-    margin: 0;         /* remove spacing */
+    margin: 0;
     border-radius: 0;
 
     display: flex;
@@ -55,30 +60,36 @@ body {
     align-items: center;
     flex-direction: column;
 
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(6px);
+    /* 🔥 FIX: remove heavy blur */
+    background: rgba(255, 255, 255, 0.65);
 
     z-index: 999;
+
+    /* GPU acceleration */
+    transform: translateZ(0);
+    will-change: opacity, transform;
 }
 
 
 /* =========================
-   Section styling
+   SECTION BASE
 ========================= */
 .section {
     margin: 40px 0;
     padding: 20px;
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(6px);
+    /* 🔥 FIX: no backdrop-filter */
+    background: rgba(255, 255, 255, 0.9);
 
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
     opacity: 1;
     transform: translateY(0);
-    transition: all 0.6s ease-in-out;
+
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
+
 
 /* Hidden sections */
 .section.hidden {
@@ -87,22 +98,25 @@ body {
     transform: translateY(30px);
 }
 
-/* Fade-out welcome animation */
+
+/* Fade-out welcome */
 .section.fade-out {
     opacity: 0;
-    transform: translateY(-30px);
-    transition: all 0.6s ease;
+    transform: translateY(-20px);
 }
 
-/* Fade-in main content animation */
+
+/* Fade-in */
 .section.fade-in {
     display: block;
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeIn 1s forwards;
+
+    animation: fadeIn 0.8s forwards;
 }
 
-/* Keyframes for fade-in */
+
+/* Keyframes */
 @keyframes fadeIn {
     to {
         opacity: 1;
@@ -112,7 +126,7 @@ body {
 
 
 /* =========================
-   Headers
+   HEADERS
 ========================= */
 h1, h2, h3 {
     color: #8A0B3A;
@@ -126,7 +140,7 @@ h3 { font-size: 1.8em; }
 
 
 /* =========================
-   Paragraphs
+   PARAGRAPH
 ========================= */
 p {
     font-size: 1.1em;
@@ -136,7 +150,7 @@ p {
 
 
 /* =========================
-   Buttons
+   BUTTON
 ========================= */
 button {
     padding: 10px 20px;
@@ -146,7 +160,8 @@ button {
     border-radius: 6px;
     cursor: pointer;
     font-size: 1em;
-    transition: all 0.3s ease;
+
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 button:hover {
@@ -156,7 +171,7 @@ button:hover {
 
 
 /* =========================
-   Main Characters
+   CHARACTERS
 ========================= */
 .characters {
     display: flex;
@@ -180,7 +195,7 @@ button:hover {
 
 
 /* =========================
-   Timeline
+   TIMELINE
 ========================= */
 .timeline {
     border-left: 3px solid #8A0B3A;
@@ -206,7 +221,7 @@ button:hover {
 
 
 /* =========================
-   Venue Images
+   VENUE
 ========================= */
 .venue img {
     width: 100%;
@@ -220,7 +235,7 @@ button:hover {
 
 
 /* =========================
-   RSVP form
+   RSVP
 ========================= */
 #rsvpForm input, #rsvpForm select {
     width: 100%;
@@ -228,8 +243,6 @@ button:hover {
     margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 1em;
-    box-sizing: border-box;
 }
 
 #rsvpForm button {
@@ -238,7 +251,7 @@ button:hover {
 
 
 /* =========================
-   Message board
+   MESSAGE BOARD
 ========================= */
 #messageBoard div {
     background-color: rgba(240, 240, 240, 0.9);
@@ -249,7 +262,7 @@ button:hover {
 
 
 /* =========================
-   Footer
+   FOOTER
 ========================= */
 footer {
     text-align: center;
@@ -265,7 +278,7 @@ footer img {
 
 
 /* =========================
-   Responsive
+   RESPONSIVE
 ========================= */
 @media screen and (max-width: 600px) {
     .characters {
