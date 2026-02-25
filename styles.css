@@ -4,15 +4,9 @@
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    background: url("assets/BG BOLD.jpeg") no-repeat center center;
-    background-size: cover;
-
-    z-index: -1; /* stay behind everything */
+    inset: 0;
+    background: url("assets/BG BOLD.jpeg") no-repeat center center / cover;
+    z-index: -1;
 }
 
 body {
@@ -24,14 +18,39 @@ body {
 }
 
 
+/* =========================
+   CONTAINER
+========================= */
 .container {
     width: 90%;
     max-width: 900px;
     margin: auto;
     padding: 20px;
     position: relative;
-    z-index: 1; /* ensures content stays above background */
+    z-index: 1;
 }
+
+
+/* =========================
+   🔥 FIX: FULLSCREEN WELCOME
+========================= */
+#section1 {
+    position: fixed;   /* KEY FIX */
+    inset: 0;
+    margin: 0;         /* remove spacing */
+    border-radius: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+
+    z-index: 999;
+}
+
 
 /* =========================
    Section styling
@@ -41,7 +60,6 @@ body {
     padding: 20px;
     border-radius: 12px;
 
-    /* softer glass effect */
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(6px);
 
@@ -82,6 +100,7 @@ body {
     }
 }
 
+
 /* =========================
    Headers
 ========================= */
@@ -91,17 +110,10 @@ h1, h2, h3 {
     text-align: center;
 }
 
-h1 {
-    font-size: 2.5em;
-}
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.8em; }
 
-h2 {
-    font-size: 2em;
-}
-
-h3 {
-    font-size: 1.8em;
-}
 
 /* =========================
    Paragraphs
@@ -111,6 +123,7 @@ p {
     line-height: 1.6;
     text-align: center;
 }
+
 
 /* =========================
    Buttons
@@ -131,8 +144,9 @@ button:hover {
     transform: translateY(-2px);
 }
 
+
 /* =========================
-   Main Characters (Bride/Groom) section
+   Main Characters
 ========================= */
 .characters {
     display: flex;
@@ -153,6 +167,7 @@ button:hover {
     object-fit: cover;
     border: 3px solid #8A0B3A;
 }
+
 
 /* =========================
    Timeline
@@ -179,6 +194,7 @@ button:hover {
     border-radius: 50%;
 }
 
+
 /* =========================
    Venue Images
 ========================= */
@@ -191,6 +207,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
 
 /* =========================
    RSVP form
@@ -209,6 +226,7 @@ button:hover {
     width: 100%;
 }
 
+
 /* =========================
    Message board
 ========================= */
@@ -218,6 +236,7 @@ button:hover {
     margin-bottom: 8px;
     border-radius: 5px;
 }
+
 
 /* =========================
    Footer
@@ -232,11 +251,11 @@ footer img {
     width: 32px;
     height: 32px;
     margin: 0 5px;
-    vertical-align: middle;
 }
 
+
 /* =========================
-   Responsive design
+   Responsive
 ========================= */
 @media screen and (max-width: 600px) {
     .characters {
