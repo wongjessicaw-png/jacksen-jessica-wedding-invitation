@@ -274,10 +274,20 @@ footer {
     border-top: 1px solid rgba(0,0,0,0.1);
 }
 
+/* 🔥 FIX ICON SIZE PROPERLY */
 footer img {
-    width: 32px;
-    height: 32px;
-    margin: 0 8px; /* 🔥 spacing */
+    width: 24px;        /* smaller */
+    height: 24px;
+    object-fit: contain;
+    display: inline-block;
+    margin: 0 6px;
+}
+
+/* optional: nicer alignment */
+footer a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
