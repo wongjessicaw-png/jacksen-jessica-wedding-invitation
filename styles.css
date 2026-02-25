@@ -81,7 +81,7 @@ body {
 .section.fade-out {
     opacity: 0;
     transform: translateY(-30px);
-    transition: all 1s ease;
+    transition: all 0.6s ease;
 }
 
 /* Fade-in main content animation */
