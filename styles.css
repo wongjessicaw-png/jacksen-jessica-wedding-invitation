@@ -283,6 +283,11 @@ footer img {
     margin: 0 6px;
 }
 
+.social-icon {
+    width: 22px;
+    height: 22px;
+}
+
 /* optional: nicer alignment */
 footer a {
     display: inline-flex;
