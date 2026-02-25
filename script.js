@@ -14,7 +14,7 @@ function greetGuest() {
 }
 
 // ----------------------
-// 2. Open Invitation button with fade animation
+// 2. Open Invitation button with smooth animation
 // ----------------------
 function setupOpenInvitation() {
     const btn = document.getElementById('openInvitationBtn');
@@ -24,26 +24,36 @@ function setupOpenInvitation() {
     if (!btn || !welcomeSection) return;
 
     btn.addEventListener('click', () => {
-        // Fade out welcome section
+        // 1. Fade out welcome
         welcomeSection.classList.add('fade-out');
 
-        // After fade-out, remove welcome and show main sections
+        // 2. PREPARE main sections BEFORE animation ends
+        mainSections.forEach((section) => {
+            section.classList.remove('hidden');
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+        });
+
+        // 3. After fade-out completes
         setTimeout(() => {
-            welcomeSection.remove(); // smoother than display:none
+            // Instead of removing → just hide safely
+            welcomeSection.style.display = 'none';
 
+            // 4. Trigger smooth fade-in
             mainSections.forEach((section, index) => {
-                section.classList.remove('hidden');
-
-                // Add staggered fade-in animation
-                section.style.animationDelay = `${index * 0.2}s`;
-                section.classList.add('fade-in');
+                setTimeout(() => {
+                    section.style.transition = 'all 0.8s ease';
+                    section.style.opacity = 1;
+                    section.style.transform = 'translateY(0)';
+                }, index * 150);
             });
 
-            // Smooth scroll to first section
+            // 5. Smooth scroll
             if (mainSections[0]) {
                 mainSections[0].scrollIntoView({ behavior: 'smooth' });
             }
-        }, 1000); // matches CSS fade-out duration
+
+        }, 600); // match CSS (important!)
     });
 }
 
