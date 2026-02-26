@@ -119,28 +119,58 @@
         </div>
     </div>
 
-    <!-- Section 3: Crossroad / Love Story Timeline -->
-    <div class="section hidden" id="section3">
-        <h2>The Crossroad</h2>
-        <div class="timeline">
-            <div>2018: We met at a mutual friend's party.</div>
-            <div>2020: Our first vacation together to the beach.</div>
-
-                <option value="">Select Attendance</option>
-                <option value="Hadir">Hadir</option>
-                <option value="Tidak Hadir">Tidak Hadir</option>
-            </select>
-            <button type="submit">Submit</button>
-        </form>
-        <div id="rsvpMessage"></div>
-
-        <h3>Message Board</h3>
-        <form id="messageForm">
-            <input type="text" id="messageInput" placeholder="Leave your message" required>
-            <button type="submit">Send</button>
-        </form>
-        <div id="messageBoard"></div>
+   <!-- Section 3: Crossroad / Love Story Timeline -->
+<div class="section hidden" id="section3">
+    <h2>The Crossroad</h2>
+    <div class="timeline">
+        <div>2018: We met at a mutual friend's party.</div>
+        <div>2020: Our first vacation together to the beach.</div>
+        <div>2022: We got engaged!</div>
     </div>
+</div>
+
+<!-- Section 4: Venue -->
+<div class="section hidden" id="section4">
+    <h2>Venue</h2>
+    <p>Wedding Ceremony at <strong>GBI Mangga Dua WTC</strong> at 10:00 AM</p>
+    <p>Wedding Reception at <strong>Orchardz Hotel Pangeran Jayakarta</strong> at 18:00 PM</p>
+    <p><em>Location:</em> <a href="https://goo.gl/maps/your-google-maps-link" target="_blank">View on Google Maps</a></p>
+    <img src="images/venue.jpg" alt="Wedding Venue">
+</div>
+
+<!-- Section 5: Wedding Blessings -->
+<div class="section hidden" id="section5">
+    <h2>Wedding Blessings</h2>
+    <p>You can send your blessings through bank transfers or gifts:</p>
+    <ul>
+        <li>BCA 4870570979 a/n Jessica Wong</li>
+        <li>MANDIRI 1150010191874 a/n Jacksen</li>
+    </ul>
+    <p>Or send gifts to our address: [Your Address Here]</p>
+</div>
+
+<!-- Section 6: RSVP -->
+<div class="section hidden" id="section6">
+    <h2>RSVP</h2>
+    <form id="rsvpForm">
+        <input type="text" name="nama" placeholder="Your Name" required>
+        <input type="number" name="jumlah_tamu" placeholder="Number of Guests" required>
+        <select name="kehadiran" required>
+            <option value="">Select Attendance</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="rsvpMessage"></div>
+
+    <h3>Message Board</h3>
+    <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Leave your message" required>
+        <button type="submit">Send</button>
+    </form>
+    <div id="messageBoard"></div>
+</div>
 
     <!-- Section 7: Closing -->
     <div class="section hidden" id="section7">
