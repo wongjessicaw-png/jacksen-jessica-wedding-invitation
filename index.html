@@ -26,7 +26,6 @@
             to { opacity: 1; }
         }
 
-       
     </style>
 
     <!-- Firebase JS via module CDN -->
@@ -85,8 +84,8 @@
 
 </head>
 <body>
-
 <div class="bg-fixed" aria-hidden="true"></div>
+
 <div class="container">
 
     <!-- Section 1: Greetings -->
@@ -96,6 +95,7 @@
             <p id="guestInviteLine">We cordially invite you to</p>
             <h2 class="couple-name">Jacksen &amp; Jessica</h2>
             <p class="wedding-label">Wedding</p>
+            <div class="elegant-divider" aria-hidden="true"></div>
             <p class="wedding-date">30 January 2027</p>
             <p class="wedding-tagline">It's finally happening.</p>
             <button id="openInvitationBtn">Open Invitation</button>
@@ -125,37 +125,7 @@
         <div class="timeline">
             <div>2018: We met at a mutual friend's party.</div>
             <div>2020: Our first vacation together to the beach.</div>
-            <div>2022: We got engaged!</div>
-        </div>
-    </div>
-
-    <!-- Section 4: Venue -->
-    <div class="section hidden" id="section4">
-        <h2>Venue</h2>
-        <p>Wedding Ceremony at <strong>GBI Mangga Dua WTC</strong> at 10:00 AM</p>
-        <p>Wedding Reception at <strong>Orchardz Hotel Pangeran Jayakarta</strong> at 18:00 PM</p>
-        <p><em>Location:</em> <a href="https://goo.gl/maps/your-google-maps-link" target="_blank">View on Google Maps</a></p>
-        <img src="images/venue.jpg" alt="Wedding Venue">
-    </div>
-
-    <!-- Section 5: Wedding Blessings -->
-    <div class="section hidden" id="section5">
-        <h2>Wedding Blessings</h2>
-        <p>You can send your blessings through bank transfers or gifts:</p>
-        <ul>
-            <li>BCA 4870570979 a/n Jessica Wong</li>
-            <li>MANDIRI 1150010191874 a/n Jacksen</li>
-        </ul>
-        <p>Or send gifts to our address: [Your Address Here]</p>
-    </div>
-
-    <!-- Section 6: RSVP -->
-    <div class="section hidden" id="section6">
-        <h2>RSVP</h2>
-        <form id="rsvpForm">
-            <input type="text" name="nama" placeholder="Your Name" required>
-            <input type="number" name="jumlah_tamu" placeholder="Number of Guests" required>
-            <select name="kehadiran" required>
+@@ -178,37 +159,37 @@
                 <option value="">Select Attendance</option>
                 <option value="Hadir">Hadir</option>
                 <option value="Tidak Hadir">Tidak Hadir</option>
