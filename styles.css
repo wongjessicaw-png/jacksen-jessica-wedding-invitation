@@ -17,7 +17,7 @@
     background-image: url("assets/Greeting BG.jpeg"), url("assets/BG SOFT.jpeg");
     background-repeat: no-repeat, no-repeat;
     background-position: center center, center center;
-    background-size: contain, cover;
+    background-size: contain, contain;
 
     z-index: -2;
 
@@ -141,7 +141,9 @@ body {
     height: auto;
     margin: 8px auto 16px;
     display: block;
-    opacity: 0.85;
+    opacity: 0.88;
+    mix-blend-mode: multiply;
+    background: transparent;
 }
 
 .elegant-divider::before {
