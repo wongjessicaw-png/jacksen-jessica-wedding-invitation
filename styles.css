@@ -14,10 +14,10 @@
     height: 100%;
 
     background-color: #f5f7fb;
-    background-image: url("assets/Greeting BG.jpeg"), url("assets/BG SOFT.jpeg");
-    background-repeat: no-repeat, no-repeat;
-    background-position: center center, center center;
-    background-size: contain, contain;
+    background-image: url("assets/Greeting BG Extended.jpg"), url("assets/Greeting BG.jpeg"), url("assets/BG SOFT.jpeg");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center center, center center, center center;
+    background-size: contain, contain, contain;
 
     z-index: -2;
 
