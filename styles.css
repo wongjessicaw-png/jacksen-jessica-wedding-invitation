@@ -191,13 +191,31 @@ body {
     border-radius: 999px;
     padding: 12px 34px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 8px 18px rgba(79, 127, 175, 0.25);
+
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    outline: none;
 }
 
+#openInvitationBtn:focus,
+#openInvitationBtn:active {
+    outline: none;
+}
+
+#openInvitationBtn:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 8px 18px rgba(79, 127, 175, 0.25);
+}
 
 #openInvitationBtn:visited {
     color: #FFFFFF !important;
 }
 
+#openInvitationBtn:hover {
+    background: #bfd7ef;
+    transform: translateY(-1px);
+}
 
 
 /* =========================
