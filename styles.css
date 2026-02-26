@@ -166,7 +166,7 @@ body {
 
 .wedding-date {
     font-family: "Cinzel", serif;
-    font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
     font-weight: 700;
     color: #9A958E;
     text-transform: uppercase;
@@ -175,7 +175,7 @@ body {
 }
 
 .wedding-tagline {
-    font-size: clamp(1.55rem, 3.2vw, 1.95rem);
+    font-size: clamp(1.3rem, 2.8vw, 1.65rem);
     color: #8B8F94;
     margin: 0 0 24px;
     font-style: italic;
