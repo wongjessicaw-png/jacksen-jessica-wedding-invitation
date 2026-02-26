@@ -26,26 +26,7 @@
             to { opacity: 1; }
         }
 
-        /* FULLSCREEN welcome section */
-        #section1 {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-
-            text-align: center;
-
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(4px);
-
-            z-index: 10;
-        }
+       
     </style>
 
     <!-- Firebase JS via module CDN -->
@@ -83,6 +64,7 @@
 
                 // After fade-out, remove welcome and show main content
                 setTimeout(() => {
+                    document.body.classList.add('invitation-open');
                     welcomeSection.remove();
                     mainSections.forEach(sec => {
                         sec.classList.remove('hidden');
@@ -109,13 +91,15 @@
 
     <!-- Section 1: Greetings -->
     <div class="section" id="section1">
-        <h1 id="guestGreeting">Hi,</h1>
-        <p id="guestInviteLine">We cordially invite you to</p>
-        <h2>JACKSEN & JESSICA</h2>
-        <h2>WEDDING INVITATION</h2>
-        <p>30 JANUARY 2027.</p>
-        <p>It's finally happening.</p>
-        <button id="openInvitationBtn">Open Invitation</button>
+        <div class="greeting-content">
+            <h1 id="guestGreeting">Andrew</h1>
+            <p id="guestInviteLine">We cordially invite you to</p>
+            <h2 class="couple-name">Jacksen &amp; Jessica</h2>
+            <p class="wedding-label">Wedding</p>
+            <p class="wedding-date">30 January 2027</p>
+            <p class="wedding-tagline">It's finally happening.</p>
+            <button id="openInvitationBtn">Open Invitation</button>
+        </div>
     </div>
 
     <!-- Section 2: Main Characters -->
