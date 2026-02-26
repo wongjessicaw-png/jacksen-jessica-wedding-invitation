@@ -34,21 +34,16 @@
         import { getDatabase } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
-            authDomain: "wedding-database-e128c.firebaseapp.com",
-            databaseURL: "https://wedding-database-e128c-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wedding-database-e128c",
-            storageBucket: "wedding-database-e128c.appspot.com",
-            messagingSenderId: "144261977665",
-            appId: "1:144261977665:web:508c89eff1e4d7ab7b18c0",
-            measurementId: "G-JNR07XFJTC"
-        };
+       const firebaseConfig = window.firebaseConfig;
 
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
-        window.firebaseDatabase = database;
+        if (firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("REPLACE_WITH_")) {
+            const app = initializeApp(firebaseConfig);
+            getAnalytics(app);
+            const database = getDatabase(app);
+            window.firebaseDatabase = database;
+        } else {
+            console.warn("Firebase config is missing or placeholder. Update config.js before deploying.");
+        }
     </script>
 
     <script>
