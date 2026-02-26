@@ -135,10 +135,11 @@ body {
 }
 
 .elegant-divider {
-    width: min(260px, 70vw);
-    height: 18px;
+    width: min(180px, 46vw);
+    height: auto;
     margin: 8px auto 16px;
-    position: relative;
+    display: block;
+    opacity: 0.85;
 }
 
 .elegant-divider::before {
@@ -165,7 +166,7 @@ body {
 
 .wedding-date {
     font-family: "Cinzel", serif;
-    font-size: clamp(2rem, 4.2vw, 2.5rem);
+    font-size: clamp(1.7rem, 3.5vw, 2.2rem);
     font-weight: 700;
     color: #9A958E;
     text-transform: uppercase;
