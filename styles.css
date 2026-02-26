@@ -108,14 +108,14 @@ body {
 
 #guestInviteLine {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: #8E8A84;
-    margin: 0 0 14px;
+    margin: 0 0 30px;
 }
 
 .couple-name {
     font-family: "Playfair Script", "Great Vibes", cursive;
-    font-size: clamp(3.2rem, 11vw, 5.5rem);
+    font-size: clamp(3.6rem, 12vw, 6rem);
     color: #B89B5E;
     margin: 0;
     font-weight: 400;
@@ -134,8 +134,28 @@ body {
     margin: 2px 0 8px;
 }
 
+.elegant-divider {
+    width: min(220px, 60vw);
+    height: 1px;
+    margin: 8px auto 16px;
+    background: linear-gradient(90deg, transparent, #B89B5E, transparent);
+    position: relative;
+}
+
+.elegant-divider::after {
+    content: "✦";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -58%);
+    font-size: 0.95rem;
+    color: #B89B5E;
+    background: transparent;
+    padding: 0 6px;
+}
+
 .wedding-date {
-    font-size: clamp(1.6rem, 3.5vw, 2rem);
+    font-size: clamp(1.9rem, 4vw, 2.3rem);
     color: #9A958E;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -153,7 +173,7 @@ body {
     font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     font-size: clamp(1.4rem, 3.8vw, 2rem);
-    color: #B89B5E;
+    color: #FFFFFF;
     background: #AFC8E8;
     border: 2px solid #C9CCD1;
     border-radius: 999px;
