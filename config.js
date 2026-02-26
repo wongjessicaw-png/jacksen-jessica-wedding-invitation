@@ -5,7 +5,7 @@
 // Replace with your real credentials before deploying
 // ==========================
 const firebaseConfig = {
-    apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
+    apiKey: "REPLACE_WITH_FIREBASE_API_KEY",
     authDomain: "wedding-database-e128c.firebaseapp.com",
     databaseURL: "https://wedding-database-e128c-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "wedding-database-e128c",
