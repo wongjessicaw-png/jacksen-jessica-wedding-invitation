@@ -16,7 +16,7 @@
     background-color: #f5f7fb;
     background-image: url("assets/Greeting BG Extended.jpg"), url("assets/BG SOFT.jpeg");
     background-repeat: no-repeat, no-repeat;
-    background-position: center center, center center;
+    background-position: center top, center center;
     background-size: cover, cover;
     
    z-index: -2;
