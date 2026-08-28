@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacksen & Jessica Wedding Invitation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 
-    <script src="config.js"></script>
+    <style>
+        /* Background image */
+        <div class="bg-fixed"></div>
+        body {
+            margin: 0;
+            background: url('./assets/BG BOLD.jpeg') no-repeat center center/cover;
+            <div class="bg-fixed"></div>
+        }
+
+        /* Hide sections initially except welcome */
+        .hidden { display: none; }
+
+        /* Fade out animation for welcome section */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* Optional: Fade-in animation for main content */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* FULLSCREEN welcome section */
+        #section1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+
+            z-index: 10;
+        }
+    </style>
 
     <!-- Firebase JS via module CDN -->
     <script type="module">
@@ -14,23 +62,28 @@
         import { getDatabase } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
 
-        const firebaseConfig = window.firebaseConfig;
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
+            authDomain: "wedding-database-e128c.firebaseapp.com",
+            databaseURL: "https://wedding-database-e128c-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wedding-database-e128c",
+            storageBucket: "wedding-database-e128c.appspot.com",
+            messagingSenderId: "144261977665",
+            appId: "1:144261977665:web:508c89eff1e4d7ab7b18c0",
+            measurementId: "G-JNR07XFJTC"
+        };
 
-        if (firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("REPLACE_WITH_")) {
-            const app = initializeApp(firebaseConfig);
-            getAnalytics(app);
-            const database = getDatabase(app);
-            window.firebaseDatabase = database;
-        } else {
-            console.warn("Firebase config is missing or placeholder. Update config.js before deploying.");
-        }
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        window.firebaseDatabase = database;
     </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const openBtn = document.getElementById('openInvitationBtn');
             const welcomeSection = document.getElementById('section1');
-            const mainSections = document.querySelectorAll('#section2, #section3, #section4, #section5, #section6, #section7, #pageFooter');
+            const mainSections = document.querySelectorAll('#section2, #section3, #section4, #section5, #section6, #section7');
 
             openBtn.addEventListener('click', () => {
                 // Fade out welcome section
@@ -38,7 +91,6 @@
 
                 // After fade-out, remove welcome and show main content
                 setTimeout(() => {
-                    document.body.classList.add('invitation-open');
                     welcomeSection.remove();
                     mainSections.forEach(sec => {
                         sec.classList.remove('hidden');
@@ -51,30 +103,22 @@
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('guest');
             if (guestName) {
-                document.getElementById('guestGreeting').textContent = guestName;
-                document.getElementById('guestInviteLine').textContent = 'We cordially invite you to';
+                document.getElementById('guestGreeting').textContent = `Welcome to Our Wedding, ${guestName}!`;
             }
         });
     </script>
 
 </head>
 <body>
-<div class="bg-fixed" aria-hidden="true"></div>
 
 <div class="container">
 
     <!-- Section 1: Greetings -->
     <div class="section" id="section1">
-        <div class="greeting-content">
-            <h1 id="guestGreeting">Andrew</h1>
-            <p id="guestInviteLine">We cordially invite you to</p>
-            <h2 class="couple-name">Jacksen &amp; Jessica</h2>
-            <p class="wedding-label">Wedding</p>
-            <img class="elegant-divider" src="assets/Divider_Glasses-removebg-preview.png" onerror="this.onerror=null;this.src='assets/Divider Glasses.png';" alt="" aria-hidden="true">
-            <p class="wedding-date">30 January 2027</p>
-            <p class="wedding-tagline">It's finally happening.</p>
-            <button id="openInvitationBtn">Open Invitation</button>
-        </div>
+        <h1 id="guestGreeting">Hi, </h1>
+        <h2>JACKSEN & JESSICA WEDDING INVITATION</h2>
+        <p>30 JANUARY 2027. It's finally happening.</p>
+        <button id="openInvitationBtn">Open Invitation</button>
     </div>
 
     <!-- Section 2: Main Characters -->
@@ -82,14 +126,14 @@
         <h2>The Main Characters</h2>
         <div class="characters">
             <div>
-                <img src="images/jacksen.jpg" alt="Jacksen">
-                <p><strong>Jacksen</strong></p>
-                <p>Groom</p>
-            </div>
-            <div>
                 <img src="images/jessica.jpg" alt="Jessica Wong">
                 <p><strong>Jessica Wong</strong></p>
                 <p>Bride</p>
+            </div>
+            <div>
+                <img src="images/jacksen.jpg" alt="Jacksen">
+                <p><strong>Jacksen</strong></p>
+                <p>Groom</p>
             </div>
         </div>
     </div>
@@ -142,13 +186,13 @@
 </div>
 
 <!-- Footer -->
-<footer id="pageFooter" class="hidden">
+<footer>
     <p>Follow us</p>
-    <a href="https://wa.me/628XXXXXXXXXX" target="_blank" aria-label="WhatsApp">
-        <img class="social-icon" src="assets/WA.png" alt="WhatsApp">
+    <a href="https://wa.me/628XXXXXXXXXX" target="_blank">
+        <img src="assets/WA.png" alt="WhatsApp">
     </a>
-    <a href="https://instagram.com/yourusername" target="_blank" aria-label="Instagram">
-        <img class="social-icon" src="assets/IG.png" alt="Instagram">
+    <a href="https://instagram.com/yourusername" target="_blank">
+        <img src="assets/IG.png" alt="Instagram">
     </a>
 </footer>
 
