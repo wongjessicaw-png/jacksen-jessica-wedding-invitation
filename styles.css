@@ -16,16 +16,17 @@
     background-color: #f5f7fb;
     background-image: url("assets/Greeting BG Extended.jpg"), url("assets/BG SOFT.jpeg");
     background-repeat: no-repeat, no-repeat;
-    background-position: top, center center;
+    background-position: center top, center center;
     background-size: cover, cover;
-    
-   z-index: -2;
+
+    z-index: -2;
 
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     will-change: transform;
     pointer-events: none;
 }
+
 
 body.invitation-open .bg-fixed {
     background: url("assets/BG BOLD.jpeg") no-repeat center center;
@@ -49,8 +50,6 @@ body {
     overflow-x: hidden;
     position: relative;
 
-    background: url("assets/BG BOLD.jpeg") no-repeat center center fixed;
-    background-size: cover;
 }
 
 
@@ -85,7 +84,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(245, 247, 251, 0.45);
 
     z-index: 999;
 
@@ -146,28 +145,6 @@ body {
     background: transparent;
 }
 
-.elegant-divider::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    border-top: 1.6px solid rgba(184, 155, 94, 0.85);
-    transform: translateY(-50%);
-}
-
-.elegant-divider::after {
-    content: "✦";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -54%);
-    font-size: 1rem;
-    color: #B89B5E;
-    background: rgba(255, 255, 255, 0.28);
-    padding: 0 8px;
-}
-
 .wedding-date {
     font-family: "Cinzel", serif;
     font-size: clamp(1.45rem, 3vw, 1.9rem);
@@ -201,6 +178,8 @@ body {
     user-select: none;
     outline: none;
 }
+
+
 
 #openInvitationBtn:focus,
 #openInvitationBtn:active {
@@ -246,170 +225,7 @@ body {
 
 /* Hidden sections */
 .section.hidden {
-    display: none;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-
-/* Fade-out welcome */
-.section.fade-out {
-    opacity: 0;
-    transform: translateY(-20px);
-}
-
-
-/* Fade-in */
-.section.fade-in {
-    display: block;
-    opacity: 0;
-    transform: translateY(30px);
-
-    animation: fadeIn 0.8s forwards;
-}
-
-
-/* Keyframes */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================
-   HEADERS
-========================= */
-h1, h2, h3 {
-    color: #8A0B3A;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.8em; }
-
-
-/* =========================
-   PARAGRAPH
-========================= */
-p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    text-align: center;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-button {
-    padding: 10px 20px;
-    background-color: #8A0B3A;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-button:hover {
-    background-color: #A82D5B;
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   CHARACTERS
-========================= */
-.characters {
-    display: flex;
-    justify-content: center; /* 🔥 CENTER FIX */
-    gap: 40px;               /* 🔥 nicer spacing */
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.characters div {
-    text-align: center;
-    margin: 10px;
-}
-
-.characters img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #8A0B3A;
-}
-
-
-/* =========================
-   TIMELINE
-========================= */
-.timeline {
-    border-left: 3px solid #8A0B3A;
-    margin: 20px auto;       /* 🔥 CENTER BLOCK */
-    padding-left: 20px;
-    max-width: 500px;        /* 🔥 keep it centered nicely */
-    text-align: left;        /* timeline reads better left */
-}
-
-.timeline div {
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.timeline div::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    background-color: #8A0B3A;
-    border-radius: 50%;
-}
-
-
-/* =========================
-   VENUE
-========================= */
-.venue img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    margin-top: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-/* =========================
-   RSVP
-========================= */
-#rsvpForm input, #rsvpForm select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-#rsvpForm button {
-    width: 100%;
-}
-
-
-/* =========================
-   MESSAGE BOARD
-========================= */
-#messageBoard div {
+@@ -261,47 +392,57 @@ button:hover {
     background-color: rgba(240, 240, 240, 0.9);
     padding: 8px 10px;
     margin-bottom: 8px;
@@ -452,7 +268,7 @@ footer a {
    RESPONSIVE
 ========================= */
 @media screen and (max-width: 600px) {
-     .greeting-content {
+    .greeting-content {
         width: 95vw;
         padding: 24px 18px;
     }
