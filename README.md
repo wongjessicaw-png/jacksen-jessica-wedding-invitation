@@ -1,26 +1,20 @@
-# Jacksen & Jessica Wedding Invitation
+# Jacksen & Jessica's Wedding Invitation
 
-A single-page digital wedding invitation with:
-- Personalized guest greeting via `?guest=Name`
-- Fullscreen opening section with custom background
-- Main sections revealed after clicking **Open Invitation**
-- Footer social links shown together with revealed sections
+## Features
+- Beautiful and fully responsive digital wedding invitation.
+- Personalized guest greeting via URL query parameter (e.g., `?guest=Budi`).
+- Smooth **welcome section fade-out** animation revealing main content.
+- RSVP form integrated with Firebase Realtime Database.
+- Real-time message board for guests to leave greetings.
+- Easy to customize text, images, and venues.
+- Works on desktop and mobile devices.
 
-## Current project structure
-- `index.html` — page structure + opening/reveal logic
-- `styles.css` — all visual styling (welcome, sections, footer, backgrounds)
-- `config.js` — Firebase runtime config placeholder (`window.firebaseConfig`)
-- `assets/` — image assets used by the page
+## Live Demo
+[View Live Invitation](https://wongjessicaw-png.github.io/jacksen-jessica-wedding-invitation/?guest=Budi)
 
-## Firebase config
-This repository intentionally uses a placeholder key in `config.js`:
-`REPLACE_WITH_FIREBASE_API_KEY`
+## Setup Instructions
 
-Before deploying with Firebase features enabled, replace it with your real project values.
-
-## Run locally
-```bash
-python3 -m http.server 4173
-```
-Open:
-`http://127.0.0.1:4173/index.html?guest=Andrew`
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/wongjessicaw-png/jacksen-jessica-wedding-invitation.git
+   cd jacksen-jessica-wedding-invitation
