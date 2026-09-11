@@ -83,7 +83,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: rgba(255, 255, 255, 0.22);
+    background: transparent;
 
     z-index: 999;
 
@@ -92,9 +92,11 @@ body {
 }
 
 .greeting-content {
-    width: min(92vw, 640px);
+    /* Let the translucent text panel reach both edges of the phone screen. */
+    width: 100%;
     padding: 36px 28px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.72);
 }
 
 #guestGreeting {
