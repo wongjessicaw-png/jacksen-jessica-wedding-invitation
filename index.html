@@ -4,81 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacksen & Jessica Wedding Invitation</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Hide sections initially except welcome */
-        .hidden { display: none; }
-
-        /* Fade out animation for welcome section */
-        .fade-out {
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        /* Optional: Fade-in animation for main content */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-    </style>
-
-    <!-- Firebase JS via module CDN -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-database.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCJdsciEiXcuImuuvtoH_3vFhdz3XRM3-I",
-            authDomain: "wedding-database-e128c.firebaseapp.com",
-            databaseURL: "https://wedding-database-e128c-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wedding-database-e128c",
-            storageBucket: "wedding-database-e128c.appspot.com",
-            messagingSenderId: "144261977665",
-            appId: "1:144261977665:web:508c89eff1e4d7ab7b18c0",
-            measurementId: "G-JNR07XFJTC"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
-        window.firebaseDatabase = database;
-    </script>
+    <link rel="stylesheet" href="styles.css?v=20260911-3">
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const openBtn = document.getElementById('openInvitationBtn');
-            const welcomeSection = document.getElementById('section1');
-            const mainSections = document.querySelectorAll('#section2, #section3, #section4, #section5, #section6, #section7, #pageFooter');
+           const openBtn = document.getElementById("openInvitationBtn");
+            const welcomeSection = document.getElementById("section1");
+            const videoOverlay = document.getElementById("videoOverlay");
+            const invitationVideo = document.getElementById("invitationVideo");
+            const destinationUrl = "https://withjoy.com/jacksen-and-jessica?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy";
+            let hasRedirected = false;
 
-            openBtn.addEventListener('click', () => {
-                // Fade out welcome section
-                welcomeSection.classList.add('fade-out');
+            const redirectToInvitation = () => {
+                if (hasRedirected) return;
+                hasRedirected = true;
+                window.location.assign(destinationUrl);
+            };
 
-                // After fade-out, remove welcome and show main content
-                setTimeout(() => {
-                    document.body.classList.add('invitation-open');
-                    welcomeSection.remove();
-                    mainSections.forEach(sec => {
-                        sec.classList.remove('hidden');
-                        sec.classList.add('fade-in');
-                    });
-                }, 1000);
-            });
-
-            // Optional: personalize greeting based on URL query
             const urlParams = new URLSearchParams(window.location.search);
-            const guestName = urlParams.get('guest');
+            const guestName = urlParams.get("guest");
             if (guestName) {
-                document.getElementById('guestGreeting').textContent = guestName;
-                document.getElementById('guestInviteLine').textContent = 'We cordially invite you to';
+           document.getElementById("guestGreeting").textContent = guestName;
             }
+
+               openBtn.addEventListener("click", () => {
+                openBtn.disabled = true;
+                welcomeSection.classList.add("fade-out");
+                videoOverlay.hidden = false;
+
+                invitationVideo.play().catch(redirectToInvitation);
+                setTimeout(() => welcomeSection.remove(), 1000);
+            }, { once: true });
+
+            invitationVideo.addEventListener("ended", redirectToInvitation, { once: true });
+            invitationVideo.addEventListener("error", redirectToInvitation, { once: true });
         });
     </script>
 
@@ -102,94 +61,12 @@
         </div>
     </div>
 
-    <!-- Section 2: Main Characters -->
-    <div class="section hidden" id="section2">
-        <h2>The Main Characters</h2>
-        <div class="characters">
-            <div>
-                <img src="images/jessica.jpg" alt="Jessica Wong">
-                <p><strong>Jessica Wong</strong></p>
-                <p>Bride</p>
-            </div>
-            <div>
-                <img src="images/jacksen.jpg" alt="Jacksen">
-                <p><strong>Jacksen</strong></p>
-                <p>Groom</p>
-            </div>
-        </div>
-    </div>
-
-   <!-- Section 3: Crossroad / Love Story Timeline -->
-<div class="section hidden" id="section3">
-    <h2>The Crossroad</h2>
-    <div class="timeline">
-        <div>2018: We met at a mutual friend's party.</div>
-        <div>2020: Our first vacation together to the beach.</div>
-        <div>2022: We got engaged!</div>
-    </div>
-</div>
-
-<!-- Section 4: Venue -->
-<div class="section hidden" id="section4">
-    <h2>Venue</h2>
-    <p>Wedding Ceremony at <strong>GBI Mangga Dua WTC</strong> at 10:00 AM</p>
-    <p>Wedding Reception at <strong>Orchardz Hotel Pangeran Jayakarta</strong> at 18:00 PM</p>
-    <p><em>Location:</em> <a href="https://goo.gl/maps/your-google-maps-link" target="_blank">View on Google Maps</a></p>
-    <img src="images/venue.jpg" alt="Wedding Venue">
-</div>
-
-<!-- Section 5: Wedding Blessings -->
-<div class="section hidden" id="section5">
-    <h2>Wedding Blessings</h2>
-    <p>You can send your blessings through bank transfers or gifts:</p>
-    <ul>
-        <li>BCA 4870570979 a/n Jessica Wong</li>
-        <li>MANDIRI 1150010191874 a/n Jacksen</li>
-    </ul>
-    <p>Or send gifts to our address: [Your Address Here]</p>
-</div>
-
-<!-- Section 6: RSVP -->
-<div class="section hidden" id="section6">
-    <h2>RSVP</h2>
-    <form id="rsvpForm">
-        <input type="text" name="nama" placeholder="Your Name" required>
-        <input type="number" name="jumlah_tamu" placeholder="Number of Guests" required>
-        <select name="kehadiran" required>
-            <option value="">Select Attendance</option>
-            <option value="Hadir">Hadir</option>
-            <option value="Tidak Hadir">Tidak Hadir</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="rsvpMessage"></div>
-
-    <h3>Message Board</h3>
-    <form id="messageForm">
-        <input type="text" id="messageInput" placeholder="Leave your message" required>
-        <button type="submit">Send</button>
-    </form>
-    <div id="messageBoard"></div>
-</div>
-
-    <!-- Section 7: Closing -->
-    <div class="section hidden" id="section7">
-        <h2>Closing</h2>
-        <p>We cannot wait to celebrate this special day with each and every one of you!</p>
-    </div>
+    <div class="video-overlay" id="videoOverlay" hidden>
+        <video id="invitationVideo" playsinline preload="auto" aria-label="Jacksen and Jessica wedding invitation video">
+            <source src="https://raw.githubusercontent.com/wongjessicaw-png/jacksen-jessica-wedding-invitation/main/assets/When%20the%20mountain.mp4" type="video/mp4">
+            Your browser does not support invitation video playback.
+        </video>
 
 </div>
-
-<!-- Footer -->
-<footer id="pageFooter" class="hidden">
-    <p>Follow us</p>
-    <a href="https://wa.me/628XXXXXXXXXX" target="_blank" aria-label="WhatsApp">
-        <img class="social-icon" src="assets/WA.png" alt="WhatsApp">
-    </a>
-    <a href="https://instagram.com/yourusername" target="_blank" aria-label="Instagram">
-        <img class="social-icon" src="assets/IG.png" alt="Instagram">
-    </a>
-</footer>
-
 </body>
 </html>
