@@ -12,6 +12,7 @@
             const welcomeSection = document.getElementById("section1");
             const videoOverlay = document.getElementById("videoOverlay");
             const invitationVideo = document.getElementById("invitationVideo");
+            const openingAudio = document.getElementById("openingAudio");
             const destinationUrl = "https://withjoy.com/jacksen-and-jessica?utm_medium=web&utm_source=joy&utm_campaign=website_overview_copy";
             let hasRedirected = false;
 
@@ -27,8 +28,15 @@
            document.getElementById("guestGreeting").textContent = guestName;
             }
 
-               openBtn.addEventListener("click", () => {
+            openingAudio.volume = 0.4;
+            openingAudio.play().catch(() => {
+                // Some mobile browsers require a user gesture before audible audio can play.
+            });
+
+            openBtn.addEventListener("click", () => {
                 openBtn.disabled = true;
+                openingAudio.pause();
+                openingAudio.currentTime = 0;
                 welcomeSection.classList.add("fade-out");
                 videoOverlay.hidden = false;
 
@@ -44,7 +52,10 @@
 </head>
 <body>
 <div class="bg-fixed" aria-hidden="true"></div>
-
+<audio id="openingAudio" autoplay loop preload="auto" aria-hidden="true">
+    <source src="https://raw.githubusercontent.com/wongjessicaw-png/jacksen-jessica-wedding-invitation/main/assets/OCEAN%20WAVE.m4a" type="audio/mp4">
+</audio>
+    
 <div class="container">
 
     <!-- Section 1: Greetings -->
