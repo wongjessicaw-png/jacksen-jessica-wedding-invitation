@@ -28,15 +28,27 @@
            document.getElementById("guestGreeting").textContent = guestName;
             }
 
-            openingAudio.volume = 0.4;
-            openingAudio.play().catch(() => {
-                // Some mobile browsers require a user gesture before audible audio can play.
-            });
+
+            const startOpeningAudio = () => {
+                openingAudio.volume = 0.4;
+                return openingAudio.play()
+                    .then(() => {
+                        enableSoundBtn.hidden = true;
+                    })
+                    .catch(() => {
+                        // Show a one-tap fallback when a phone blocks audible autoplay.
+                        enableSoundBtn.hidden = false;
+                    });
+            };
+
+            startOpeningAudio();
+            enableSoundBtn.addEventListener("click", startOpeningAudio);
 
             openBtn.addEventListener("click", () => {
                 openBtn.disabled = true;
                 openingAudio.pause();
                 openingAudio.currentTime = 0;
+                enableSoundBtn.hidden = true;
                 welcomeSection.classList.add("fade-out");
                 videoOverlay.hidden = false;
 
@@ -55,6 +67,7 @@
 <audio id="openingAudio" autoplay loop preload="auto" aria-hidden="true">
     <source src="https://raw.githubusercontent.com/wongjessicaw-png/jacksen-jessica-wedding-invitation/main/assets/OCEAN%20WAVE.m4a" type="audio/mp4">
 </audio>
+<button id="enableSoundBtn" class="enable-sound" type="button" hidden>Tap to play sound</button>
     
 <div class="container">
 
