@@ -14,7 +14,7 @@
     height: 100%;
 
     /* Opening.png is the full welcome-screen artwork, so no layered panel is needed. */
-    background: #f5f7fb url("assets/NO%20LINES.png") no-repeat center center;
+    background: #f5f7fb url("assets/OCEAN%20SHIP.png") no-repeat center center;
     background-size: cover;
 
     z-index: -2;
