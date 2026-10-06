@@ -26,7 +26,7 @@
 }
 
 body.invitation-open .bg-fixed {
-    background: url("assets/BG BOLD.jpeg") no-repeat center center;
+    background: url("assets/OCEAN%20SHIP.png") no-repeat center center;
     background-size: cover;
 }
 
@@ -47,7 +47,7 @@ body {
     overflow-x: hidden;
     position: relative;
 
-    background: url("assets/NO%20LINES.png") no-repeat center center fixed;
+    background: url("assets/OCEAN%20SHIP.png") no-repeat center center fixed;
     background-size: cover;
 }
 
