@@ -53,20 +53,6 @@
                 videoOverlay.hidden = false;
 
                 invitationVideo.play().catch(redirectToInvitation);
-
-                // Request native fullscreen on supported devices.
-                if (invitationVideo.requestFullscreen) {
-                    invitationVideo.requestFullscreen().catch(() => {});
-                } else if (invitationVideo.webkitEnterFullscreen) {
-                // Safari on supported iPhones
-                try {
-                    invitationVideo.webkitEnterFullscreen();
-                } catch (error) {
-                console.log("Native fullscreen unavailable:", error);
-                }
-            }
-
-                
                 setTimeout(() => welcomeSection.remove(), 1000);
             }, { once: true });
 
